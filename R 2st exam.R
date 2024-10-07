@@ -93,3 +93,67 @@ b <- c(1,2,3,4,5,6,7)
 b[4]
 b[-4]
 b[1:5]
+
+# 6주차 배열 인덱싱
+a= array(data= c(1,2,3,4,5,6),dim=c(2,3))
+a[2]
+a
+a[1,2] # 배열 값의 위치 번호
+a[1:2]
+a[1:3]
+a[1:2,2]
+a[6]   # 들어간 벡터의 순서대로 숫자가 나온다
+a[2,2:3] # 2번쨰 행의 2:3열 슬라이싱
+
+a[c(1,6)] # 벡터 자체를 통으로 호출
+
+my_list <- list("apple", 3.14, c(1,2,3), TRUE)
+
+my_list[[3]][2] # list 속의 벡터에서 벡터값을 뽑아서 그 위치값을 선정
+
+my_list[3][2] + my_list[3][3] # list 속 3번째 성분을 뽑은 list(c(1,2,3)) 에서 두번째, 세번째는 존재하지않으므로 NULL출력 
+
+my_list[[3]]
+
+ar <- array(1:24,dim = c(3,4,2))
+ar
+ar[2,3,1]
+ar[3,,2]
+ar[,2:3,]
+ar[2,3,1]
+ar[3,,2]
+ar[,,2]
+
+ar[1,4,2]
+
+# 문제 1
+arr <- array(1:20, dim=c(2,5,2))
+
+arr[1,3,1]             
+arr[2,3,2]
+
+arr[1:2,3,1]
+
+# 2.5 데이터 구조 파악 - 테이블/ 데이터프레임
+# dataframe -> 벡터들을 담는 주머니, 다양한 자료형이 존재함 / 같은 자료형을 담는 벡터들의 집합 
+
+city <- c("Seoul","Busan","Daegu","Seoul","Busan","Dague","Ulsan")
+pm25 <- c(18,21,21,17,8,11,25)
+
+df <- data.frame(A = city, B = pm25)
+df
+
+id <-c(1:5)
+gender <- c("M","F","F","M","M")
+major <- c("Eng","Math","Com","Eng","Busi")
+salary <- c(2500,2800,2500,3000,2600)
+survey <- data.frame(ID = id, Gender = gender, Major = major, Salary = salary, stringsAsFactors = FALSE)
+
+survey[1]
+survey$ID # 데이터베이스$변수명 = 벡터값 반환 
+
+survey$ID[3:4]
+
+survey$score = c(67,89,45,86,53) # 데이터베이스$변수명 = c(~~~) / 데이터베이스에 새로운 변수 추가
+survey$ss = survey$Salary+survey$score # 변수끼리 더한후 새로 데이터베이스에 추가
+survey
