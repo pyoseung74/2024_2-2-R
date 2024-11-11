@@ -147,7 +147,8 @@ id <-c(1:5)
 gender <- c("M","F","F","M","M")
 major <- c("Eng","Math","Com","Eng","Busi")
 salary <- c(2500,2800,2500,3000,2600)
-survey <- data.frame(ID = id, Gender = gender, Major = major, Salary = salary, stringsAsFactors = FALSE)
+survey <- data.frame(ID = id, Gender = gender, Major = major, Salary = salary, stringsAsFactors = FALSE) 
+# stringAsFactors => 문자들을 하나의 요소로 취급(false) / 비취급(true) -> 싹다 문자로 취급
 
 survey[1]
 survey$ID # 데이터베이스$변수명 = 벡터값 반환 
@@ -157,3 +158,59 @@ survey$ID[3:4]
 survey$score = c(67,89,45,86,53) # 데이터베이스$변수명 = c(~~~) / 데이터베이스에 새로운 변수 추가
 survey$ss = survey$Salary+survey$score # 변수끼리 더한후 새로 데이터베이스에 추가
 survey
+
+survey()
+
+summary(survey) # 데이터 프레임의 변수 요약
+
+survey$ID = as.integer(survey$ID)
+survey$ID = as.numeric(survey$ID)
+survey$ID = as.factor(survey$ID)
+survey$ID = as.logical(survey$Age)
+survey$ID = as.character(survey$ID)
+
+survey$Major = as.numeric(survey$Major)
+
+survey$Major = as.factor(survey$Major)
+
+names(df)
+
+names(df)[names(df) == "데이터프레임의 변수명"] = "반환할 변수명"
+
+names(survey)[names(survey) == "Salary"] = "salary"
+survey
+
+survey[c(1,2)] # 1,2 열 추출
+survey[c(-1,-2)] # 1,2 열을 제외한 나머지 열 추출
+survey[survey$Gender == "F",] # Gender = F 인 행만 추출
+survey1 = survey[survey$Major=="Eng"&survey$salary>2600,] # Major이 Eng이고 salary>2600인 행 추출
+survey[survey$Major=="Eng"|survey$salary>2600,] # Major이 Eng이거나 salary>2600인 행 추출
+
+#subset(데이터 프레임, 조건, select = c(도출하고싶은 변수 명1, 도출하고싶은 변수명 2 ))
+survey2 <- subset(survey, survey$salary > 2600)
+survey2
+survey3 <- subset(survey, survey$salary > 2600,select = c("ID","salary"))
+survey3
+
+subset(survey, Major=="Com",c)
+survey$Gender <- NULL # Gender 열 삭제
+survey
+
+name_age_df <- data.frame(Name = c("Kim Cheol-soo", "Lee Cheol-soo", "Kim Young-hee", 
+                              "Lee Young-hee", "Kim Min-jun", "Park Min-jun", "Kim Ji-young", "Park Ji-young"),
+                     Age = c(20, 24, 21, 24, 35, 40, 34, 35),
+                     stringsAsFactors = FALSE
+                     )
+
+install.packages("tidyr")
+library(tidyr)
+
+setwd("D:/202122404김표승 R exam/재난안전프로그래밍_KPS")
+
+separate(name_age_df, col = "Name", into = c("LastName", "FirstName"), sep = "-")
+
+data <- read.csv("R1.csv", header = FALSE,stringsAsFactors = FALSE,fileEncoding = "UTF-8")
+
+write.csv(survey,"D:/202122404김표승 R exam/재난안전프로그래밍_KPS/R1.csv", row.names=FALSE)
+write.csv(survey,"D:/202122404김표승 R exam/재난안전프로그래밍_KPS/R2.csv", row.names=TRUE) # data 순서 열 추가
+
