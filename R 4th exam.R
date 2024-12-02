@@ -111,3 +111,53 @@ fwrite(completed_data, 'D:/202122404김표승 R exam/재난안전프로그래밍
 library(dplyr)
 # ~ifelse : ~ifelse(범위값, 범위에 해당되는 값에 대한 변환 값, 변환하고 싶은 대상) →하나의 조건에 대해서만 처리
 # mutate(데이터, across(c(“변수명1","변수명2","변수명3"), ~ifelse(범위값, 변환값, 변환대상)))
+
+code <- fread('C:/Users/User/Downloads/code_ps.csv')
+code_numeric <- code[,sapply(code,is.numeric), with = FALSE]
+code_char <- df[,sapply(code,is.character),with = FALSE]
+
+imputed_data <- mice(code_numeric, m = 5, maxit = 10, method = "pmm", seed = 1235)
+
+cbind
+
+mutate(code_numeric,across(c("X20s","X30s","X40s"),~ifelse(. > 6.0,"High",.)))
+
+mutate(code_numeric,across(c("X20s","X30s","X40s"),~case_when(.>=6.0~1,.>=2.5&.<6.0~2,.<2.5~3,TRUE~.)))
+mutate(code_numeric,across(c("X20s","X30s","X40s"), case_when(.>= 6.0 ~ "High",.>= 2.5 &. <6.0~"Medium",. <2.5~"Low",TRUE ~ as.character(.))))
+
+
+
+# 11
+mtcars
+
+car <- data.frame(mtcars[c(1,2,3,6,7)])
+
+# 12
+
+car$qw <- cbind(mtcars[[6]]+mtcars[[7]])
+
+# 13
+
+str(car)
+
+# 14 x
+
+# 15
+
+total_car <- rowSums(car)
+
+# 16
+
+car_name <- rownames(car)
+car_name
+  
+# 17
+
+car_model <- 
+car_model
+  
+# 18
+  
+# 19
+  
+# 20
